@@ -6,15 +6,21 @@
       @change="addItem(todo)"
       placeholder="Új feladat megadása"
     />
-    <ul>
+    <!-- <ul>
       <li v-for="todo in todoList">{{ todo }}</li>
-    </ul>
+    </ul> -->
+    <table>
+      <tr v-for="todo in todoList">
+        <td>{{ todo }}</td>
+        <td><span class="btn btn-danger">Törlés</span></td>
+      </tr>
+    </table>
   </div>
 </template>
 <script setup>
   import { ref } from 'vue';
   const todo = ref(null);
-  const todoList = ref([]);
+  const todoList = ref(new Set());
   function addItem(t) {
     todoList.value.push(t);
     todo.value = '';
