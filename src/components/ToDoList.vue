@@ -9,11 +9,17 @@
     <!-- <ul>
       <li v-for="todo in todoList">{{ todo }}</li>
     </ul> -->
-    <table>
+
+    <table v-if="todoList.size">
       <tr v-for="todo in todoList">
         <td>{{ todo }}</td>
-        <td><span class="btn btn-danger">Törlés</span></td>
+        <td>
+          <span class="btn btn-danger" @click="deleteItem(todo)">Törlés</span>
+        </td>
       </tr>
+      <h3 class="text-success" v-else="todoList.size">
+        Mára nincs több teendő
+      </h3>
     </table>
   </div>
 </template>
@@ -22,8 +28,12 @@
   const todo = ref(null);
   const todoList = ref(new Set());
   function addItem(t) {
-    todoList.value.push(t);
+    todoList.value.add(t);
     todo.value = '';
   }
+  function deleteItem(t) {
+    todoList.value.delete(t);
+  }
+  function
 </script>
 <style lang=""></style>
